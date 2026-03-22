@@ -1,4 +1,4 @@
-export 'auth.service.dart' show AuthSignInResult;
+export 'auth.service.dart' show AuthSignInResult, AuthSignUpResult;
 
 import 'auth.service.dart';
 import '../database/realmservice.dart';
@@ -31,6 +31,22 @@ class AuthController {
       firstName,
       lastName,
       phoneNumber,
+    );
+  }
+
+  Future<AuthSignUpResult> signUpWithResult({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) async {
+    return authService.signUpWithResult(
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
     );
   }
 }

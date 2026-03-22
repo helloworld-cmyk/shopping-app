@@ -39,4 +39,20 @@ class PhakeBE {
   }
 
   static PhakeBE get instance => _instance;
+
+  Future<AuthSignUpResult> signUpWithResult({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) {
+    return auth.signUpWithResult(
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+    );
+  }
 }

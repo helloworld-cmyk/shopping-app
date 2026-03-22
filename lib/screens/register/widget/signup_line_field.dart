@@ -14,6 +14,7 @@ class SignUpLineField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.onChanged,
+    this.onFieldSubmitted,
     this.enabled = true,
     this.errorText,
     this.textCapitalization = TextCapitalization.none,
@@ -24,6 +25,7 @@ class SignUpLineField extends StatelessWidget {
 
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
   final bool enabled;
   final String? errorText;
   final TextCapitalization textCapitalization;
@@ -68,6 +70,7 @@ class SignUpLineField extends StatelessWidget {
           textInputAction: textInputAction,
           obscureText: obscureText,
           onChanged: onChanged,
+          onFieldSubmitted: onFieldSubmitted,
           enabled: enabled,
           textCapitalization: textCapitalization,
           cursorColor: kSignUpOrange,

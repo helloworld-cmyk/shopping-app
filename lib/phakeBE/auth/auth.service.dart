@@ -25,6 +25,28 @@ class AuthSignInResult {
   final AuthSignInFailure? failure;
 }
 
+enum AuthSignUpFailure { emailAlreadyInUse, unknown }
+
+class AuthSignUpResult {
+  const AuthSignUpResult._({
+    required this.isSuccess,
+    required this.message,
+    this.failure,
+  });
+
+  const AuthSignUpResult.success([String message = 'Sign up successfully'])
+    : this._(isSuccess: true, message: message);
+
+  const AuthSignUpResult.failure({
+    required AuthSignUpFailure type,
+    required String message,
+  }) : this._(isSuccess: false, message: message, failure: type);
+
+  final bool isSuccess;
+  final String message;
+  final AuthSignUpFailure? failure;
+}
+
 class AuthService {
   final Realm realm;
   AuthService(this.realm);
@@ -69,11 +91,31 @@ class AuthService {
     String lastName,
     String phoneNumber,
   ) async {
+    final result = await signUpWithResult(
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+    );
+    return result.isSuccess;
+  }
+
+  Future<AuthSignUpResult> signUpWithResult({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) async {
     await Future.delayed(const Duration(seconds: 1));
     final normalizedEmail = email.trim().toLowerCase();
     final existingUsers = realm.query<User>(r'email == $0', [normalizedEmail]);
     if (existingUsers.isNotEmpty) {
-      return false;
+      return const AuthSignUpResult.failure(
+        type: AuthSignUpFailure.emailAlreadyInUse,
+        message: 'This email is already registered',
+      );
     }
 
     final newUser = User(
@@ -89,6 +131,6 @@ class AuthService {
       realm.add(newUser);
     });
 
-    return true;
+    return const AuthSignUpResult.success('Account created successfully');
   }
 }
