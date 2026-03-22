@@ -6,19 +6,27 @@ class SignInLineField extends StatelessWidget {
   const SignInLineField({
     super.key,
     required this.label,
+    this.initialValue,
     this.keyboardType,
     this.textInputAction,
     this.obscureText = false,
     this.suffixIcon,
+    this.onChanged,
+    this.errorText,
     this.enabled = true,
+    this.onFieldSubmitted,
   });
 
   final String label;
+  final String? initialValue;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final bool obscureText;
   final Widget? suffixIcon;
+  final ValueChanged<String>? onChanged;
+  final String? errorText;
   final bool enabled;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +46,13 @@ class SignInLineField extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         TextFormField(
+          initialValue: initialValue,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           obscureText: obscureText,
+          onChanged: onChanged,
           enabled: enabled,
+          onFieldSubmitted: onFieldSubmitted,
           cursorColor: kSignInOrange,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: kSignInText,
@@ -53,6 +64,7 @@ class SignInLineField extends StatelessWidget {
           decoration: InputDecoration(
             isDense: true,
             contentPadding: const EdgeInsets.symmetric(vertical: 8),
+            errorText: errorText,
             border: const UnderlineInputBorder(
               borderSide: BorderSide(color: kSignInLine, width: 1),
             ),

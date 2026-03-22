@@ -5,10 +5,12 @@ import 'signin_colors.dart';
 class SignInRememberRow extends StatelessWidget {
   const SignInRememberRow({
     super.key,
+    this.isSelected = true,
     this.onRememberTap,
     this.onForgotPassword,
   });
 
+  final bool isSelected;
   final VoidCallback? onRememberTap;
   final VoidCallback? onForgotPassword;
 
@@ -21,7 +23,7 @@ class SignInRememberRow extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const _RememberCheckBox(),
+              _RememberCheckBox(isSelected: isSelected),
               const SizedBox(width: 8),
               Text(
                 'Remember Me',
@@ -56,7 +58,9 @@ class SignInRememberRow extends StatelessWidget {
 }
 
 class _RememberCheckBox extends StatelessWidget {
-  const _RememberCheckBox();
+  const _RememberCheckBox({required this.isSelected});
+
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +68,17 @@ class _RememberCheckBox extends StatelessWidget {
       width: 13,
       height: 13,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isSelected ? kSignInOrange : Colors.white,
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: const Color(0xFFB7B7B7), width: 1),
+        border: Border.all(
+          color: isSelected ? kSignInOrange : const Color(0xFFB7B7B7),
+          width: 1,
+        ),
       ),
-      child: const Center(
-        child: Icon(Icons.check, size: 9, color: Color(0xFF666666)),
+      child: Center(
+        child: isSelected
+            ? const Icon(Icons.check, size: 9, color: Colors.white)
+            : null,
       ),
     );
   }

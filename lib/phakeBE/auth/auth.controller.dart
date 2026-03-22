@@ -1,3 +1,5 @@
+export 'auth.service.dart' show AuthSignInResult;
+
 import 'auth.service.dart';
 import '../database/realmservice.dart';
 
@@ -9,8 +11,11 @@ class AuthController {
     authService = AuthService(realmService.realm);
   }
 
-  Future<bool> signIn(String email, String password) async {
-    return await authService.signIn(email, password);
+  Future<AuthSignInResult> signInWithResult({
+    required String email,
+    required String password,
+  }) async {
+    return authService.signInWithResult(email: email, password: password);
   }
 
   Future<bool> signUp(

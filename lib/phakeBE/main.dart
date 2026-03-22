@@ -20,8 +20,12 @@ class PhakeBE {
     _realmService.dispose();
   }
 
-  Future<bool> signIn(String email, String password) {
-    return auth.signIn(email, password);
+
+  Future<AuthSignInResult> signInWithResult({
+    required String email,
+    required String password,
+  }) {
+    return auth.signInWithResult(email: email, password: password);
   }
 
   Future<bool> signUp(

@@ -5,12 +5,20 @@ import 'signin_line_field.dart';
 class SignInPasswordField extends StatelessWidget {
   const SignInPasswordField({
     super.key,
+    this.onChanged,
+    this.errorText,
     this.enabled = true,
     this.obscureText = true,
+    this.onToggleVisibility,
+    this.onFieldSubmitted,
   });
 
+  final ValueChanged<String>? onChanged;
+  final String? errorText;
   final bool enabled;
   final bool obscureText;
+  final VoidCallback? onToggleVisibility;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +26,12 @@ class SignInPasswordField extends StatelessWidget {
       label: 'Password',
       obscureText: obscureText,
       textInputAction: TextInputAction.done,
+      onChanged: onChanged,
+      errorText: errorText,
       enabled: enabled,
+      onFieldSubmitted: onFieldSubmitted,
       suffixIcon: IconButton(
-        onPressed: null,
+        onPressed: onToggleVisibility,
         padding: EdgeInsets.zero,
         constraints: const BoxConstraints.tightFor(width: 24, height: 24),
         icon: Icon(
