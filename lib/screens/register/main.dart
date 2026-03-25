@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,6 +14,7 @@ import 'widget/signup_password_field.dart';
 import 'widget/signup_primary_button.dart';
 import 'widget/signup_social_button.dart';
 
+@RoutePage()
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key, this.onBack, this.onSignedUp});
 
@@ -109,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                               onBack!.call();
                               return;
                             }
-                            Navigator.of(context).maybePop();
+                            context.router.maybePop();
                           },
                         ),
                       ),

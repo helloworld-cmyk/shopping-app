@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
+import '../../router/app_router.dart';
 import 'controller/onboard_controller.dart';
 import 'widget/onboard_page_data.dart';
 import 'widget/onboard_slide.dart';
 
+@RoutePage()
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
 
@@ -24,7 +27,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
     if (!_controller.shouldNavigateToLogin || !mounted) return;
 
     _controller.consumeLoginNavigation();
-    Navigator.of(context).pushReplacementNamed('/login');
+    context.router.replace(const LoginRoute());
   }
 
   Future<void> _goToNextPage() async {

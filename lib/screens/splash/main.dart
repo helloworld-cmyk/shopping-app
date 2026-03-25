@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
+import '../../router/app_router.dart';
 import 'widget/splash_background.dart';
 import 'widget/splash_footer.dart';
 import 'widget/splash_logo.dart';
 
+@RoutePage()
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -23,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
-      Navigator.of(context).pushReplacementNamed('/onboard');
+      context.router.replace(const OnboardRoute());
     });
   }
 

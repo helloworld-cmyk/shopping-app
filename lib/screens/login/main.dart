@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../bloc/bloc.dart';
 import '../../bloc/event.dart';
 import '../../theme/color.dart';
+import '../../router/app_router.dart';
+
 import 'bloc/bloc.dart';
 import 'bloc/event.dart';
 import 'bloc/state.dart';
@@ -16,6 +19,7 @@ import 'widget/signin_primary_button.dart';
 import 'widget/signin_remember_row.dart';
 import 'widget/signin_social_button.dart';
 
+@RoutePage()
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -83,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SignInHeroBanner(
-                        onBack: () => Navigator.of(context).maybePop(),
+                        onBack: () => context.router.maybePop(),
                       ),
                       const SizedBox(height: 50),
                       Padding(
@@ -154,7 +158,7 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(height: 28),
                             SignInFooter(
                               onRegisterTap: () {
-                                Navigator.of(context).pushNamed('/register');
+                                context.router.push(RegisterRoute());
                               },
                             ),
                           ],
