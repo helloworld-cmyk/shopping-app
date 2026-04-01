@@ -23,7 +23,7 @@ class OnboardDots extends StatelessWidget {
         final selection = 1 - distance;
         final dotSize = ui.lerpDouble(5.2, 7.2, selection)!;
         final dotColor = Color.lerp(
-          Colors.white.withOpacity(0.72),
+          Colors.white.withValues(alpha: 0.72),
           activeColor,
           selection,
         )!;

@@ -53,7 +53,7 @@ class OnboardSlide extends StatelessWidget {
                         letterSpacing: 0,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.12),
+                            color: Colors.black.withValues(alpha: 0.12),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           ),

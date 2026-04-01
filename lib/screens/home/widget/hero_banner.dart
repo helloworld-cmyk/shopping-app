@@ -24,8 +24,8 @@ class HeroBanner extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.black.withOpacity(0.1),
-                Colors.black.withOpacity(0.5),
+                Colors.black.withValues(alpha: 0.1),
+                Colors.black.withValues(alpha: 0.5),
               ],
             ),
           ),
@@ -77,7 +77,7 @@ class HeroBanner extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: index == 0
                       ? AppColors.primary
-                      : AppColors.white.withOpacity(0.5),
+                      : AppColors.white.withValues(alpha: 0.5),
                   shape: BoxShape.circle,
                 ),
               );

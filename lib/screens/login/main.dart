@@ -3,8 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc/bloc.dart';
-import '../../bloc/event.dart';
+import '../../bloc/authBloc/bloc.dart';
+import '../../bloc/authBloc/event.dart';
 import '../../theme/color.dart';
 import '../../router/app_router.dart';
 
@@ -86,9 +86,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SignInHeroBanner(
-                        onBack: () => context.router.maybePop(),
-                      ),
+                      SignInHeroBanner(onBack: () => context.router.maybePop()),
                       const SizedBox(height: 50),
                       Padding(
                         padding: EdgeInsets.fromLTRB(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../theme/color.dart';
-import 'product_card.dart';
+import '../../../widgets/product_card.dart';
 import 'section_title.dart';
 
 class OnSaleSection extends StatelessWidget {
@@ -12,13 +13,13 @@ class OnSaleSection extends StatelessWidget {
       {
         'image': 'lib/assets/home/onsale1.png',
         'name': 'Ankle Boots',
-        'price': '180.00 - 219.00',
+        'price': '180.00',
         'soldCount': '358',
       },
       {
         'image': 'lib/assets/home/onsale2.png',
         'name': 'Coat With Belt',
-        'price': '19.00 - 49.00',
+        'price': '19.00',
         'soldCount': '358',
       },
     ];
@@ -55,8 +56,8 @@ class OnSaleSection extends StatelessWidget {
               return ProductCard(
                 image: products[index]['image']!,
                 name: products[index]['name']!,
-                price: products[index]['price']!,
-                soldCount: products[index]['soldCount']!,
+                soldLabel: 'Sold (${products[index]['soldCount']} Products)',
+                priceText: '\$ ${products[index]['price']!}',
                 isAsset: true,
               );
             },

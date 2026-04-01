@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:auto_route/auto_route.dart';
+import '../../../router/app_router.dart';
 import '../../../theme/color.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -27,7 +29,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: AppColors.mediumGray,
                   size: 28,
                 ),
-                onPressed: () {},
+                onPressed: () => context.router.push(const NotificationRoute()),
               ),
               Positioned(
                 right: 12,

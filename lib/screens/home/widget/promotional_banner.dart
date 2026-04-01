@@ -24,7 +24,7 @@ class PromotionalBanner extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withValues(alpha: 0.4),
               ),
               Positioned(
                 left: 16,
@@ -38,7 +38,7 @@ class PromotionalBanner extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.white.withOpacity(0.3),
+                        color: AppColors.white.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
@@ -110,7 +110,7 @@ class PromotionalBanner extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withValues(alpha: 0.4),
               ),
               Positioned(
                 left: 16,
@@ -124,7 +124,7 @@ class PromotionalBanner extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.white.withOpacity(0.3),
+                        color: AppColors.white.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
@@ -169,7 +169,7 @@ class PromotionalBanner extends StatelessWidget {
                       child: Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing.',
                         style: GoogleFonts.poppins(
-                          color: AppColors.white.withOpacity(0.8),
+                          color: AppColors.white.withValues(alpha: 0.8),
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                           height: 1,

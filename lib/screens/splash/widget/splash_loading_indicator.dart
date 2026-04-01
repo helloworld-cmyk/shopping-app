@@ -37,17 +37,17 @@ class _SplashLoadingPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.7
       ..strokeCap = StrokeCap.round
-      ..color = Colors.white.withOpacity(0.92);
+      ..color = Colors.white.withValues(alpha: 0.92);
 
     final innerPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0
       ..strokeCap = StrokeCap.round
-      ..color = Colors.white.withOpacity(0.88);
+      ..color = Colors.white.withValues(alpha: 0.88);
 
     final dotPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.white.withOpacity(0.96);
+      ..color = Colors.white.withValues(alpha: 0.96);
 
     canvas.save();
     canvas.translate(center.dx, center.dy);

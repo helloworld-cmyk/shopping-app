@@ -19,9 +19,9 @@ class OnboardBackground extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.22),
+                    Colors.black.withValues(alpha: 0.22),
                     Colors.transparent,
-                    Colors.black.withOpacity(0.18),
+                    Colors.black.withValues(alpha: 0.18),
                   ],
                   stops: const [0.0, 0.58, 1.0],
                 ),

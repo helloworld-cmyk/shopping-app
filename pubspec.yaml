@@ -68,8 +68,19 @@ flutter:
     - lib/assets/background/onboard1.png
     - lib/assets/background/onboard2.png
     - lib/assets/background/onboard3.png
+    - lib/assets/catagories/
     - lib/assets/icon/
+    - lib/assets/icon/bank.png
     - lib/assets/home/
+    - lib/assets/catagories/men/
+    - lib/assets/catagories/women/
+    - lib/assets/catagories/shoes/
+    - lib/assets/catagories/kids/
+    - lib/assets/catagories/accessories/
+    - lib/assets/catagories/bags/
+
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

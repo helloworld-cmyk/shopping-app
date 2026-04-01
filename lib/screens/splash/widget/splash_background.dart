@@ -29,7 +29,7 @@ class _SplashBackgroundPainter extends CustomPainter {
     final topGlow = Paint()
       ..shader =
           RadialGradient(
-            colors: [Colors.white.withOpacity(0.15), Colors.transparent],
+            colors: [Colors.white.withValues(alpha: 0.15), Colors.transparent],
           ).createShader(
             Rect.fromCircle(
               center: Offset(size.width * 0.76, size.height * 0.10),
@@ -48,8 +48,8 @@ class _SplashBackgroundPainter extends CustomPainter {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.white.withOpacity(0.11),
-              Colors.white.withOpacity(0.03),
+              Colors.white.withValues(alpha: 0.11),
+              Colors.white.withValues(alpha: 0.03),
             ],
           ).createShader(
             Rect.fromLTWH(0, size.height * 0.34, size.width, size.height),
@@ -66,7 +66,7 @@ class _SplashBackgroundPainter extends CustomPainter {
     final lowerShade = Paint()
       ..shader =
           RadialGradient(
-            colors: [Colors.black.withOpacity(0.13), Colors.transparent],
+            colors: [Colors.black.withValues(alpha: 0.13), Colors.transparent],
           ).createShader(
             Rect.fromCircle(
               center: Offset(size.width * 0.84, size.height * 0.89),

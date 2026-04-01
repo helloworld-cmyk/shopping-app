@@ -28,7 +28,7 @@ class SplashLogo extends StatelessWidget {
                   height: 286,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.09 + pulse * 0.03),
+                    color: Colors.white.withValues(alpha: 0.09 + pulse * 0.03),
                   ),
                 ),
                 Container(
@@ -36,13 +36,13 @@ class SplashLogo extends StatelessWidget {
                   height: 212 + pulse * 8,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.11 + pulse * 0.03),
+                    color: Colors.white.withValues(alpha: 0.11 + pulse * 0.03),
                   ),
                 ),
                 Text(
                   'N',
                   style: GoogleFonts.poppins(
-                    color: Colors.white.withOpacity(0.96),
+                    color: Colors.white.withValues(alpha: 0.96),
                     fontSize: 100,
                     fontWeight: FontWeight.w200,
                     letterSpacing: 1.4,
