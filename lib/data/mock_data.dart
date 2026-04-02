@@ -3,7 +3,6 @@ import '../screens/detailCatagories/detail_categories_mock_data.dart';
 
 export '../models/product_model.dart';
 
-/// Categories from the Filter design
 const List<String> searchFilterCategories = [
   'Shoes',
   'Dresses',
@@ -19,7 +18,6 @@ const List<String> searchFilterCategories = [
   'Top',
 ];
 
-/// The Search Screen specific items we saw in the design
 const List<ProductItem> searchScreenProducts = [
   ProductItem(
     name: 'Printed Cotton Shirt',
@@ -66,7 +64,6 @@ const List<ProductItem> searchScreenProducts = [
   ),
 ];
 
-/// Centralized list containing all predefined products
 final List<ProductItem> allProducts = [
   ...searchScreenProducts,
   ...menDetailCategoryProducts,
