@@ -76,7 +76,7 @@ class CustomBottomNav extends StatelessWidget {
         route = const HomeRoute();
         break;
       case 1:
-        route = const CategoriesRoute();
+        route = const WishlistRoute();
         break;
       case 2:
         route = const CartRoute();

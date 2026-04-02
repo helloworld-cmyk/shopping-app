@@ -24,6 +24,8 @@ class ProductScreen extends StatelessWidget {
     final product = mockProductDetail;
     final String displayTitle = title ?? product.name;
     final double displayPrice = price ?? product.price;
+    final String productId =
+        '${displayTitle}_${displayPrice.toStringAsFixed(2)}_${image ?? product.images.first}';
     final List<String> displayImages = image == null
         ? product.images
         : <String>[image!, ...product.images.where((item) => item != image)];
@@ -67,7 +69,7 @@ class ProductScreen extends StatelessWidget {
             right: 0,
             bottom: 0,
             child: StickyBottomBar(
-              id: displayTitle,
+              id: productId,
               name: displayTitle,
               image: displayImages.first,
               price: displayPrice,

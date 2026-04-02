@@ -51,7 +51,7 @@ class CardPreview extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -76,7 +76,7 @@ class CardPreview extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 17,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black.withOpacity(0.7),
+                color: AppColors.black.withValues(alpha: 0.7),
                 letterSpacing: 2.0,
               ),
             ),
@@ -94,7 +94,7 @@ class CardPreview extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.black.withOpacity(0.65),
+                      color: AppColors.black.withValues(alpha: 0.65),
                       letterSpacing: 1.5,
                     ),
                   ),
@@ -104,7 +104,7 @@ class CardPreview extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.black.withOpacity(0.65),
+                    color: AppColors.black.withValues(alpha: 0.65),
                     letterSpacing: 1.5,
                   ),
                 ),
@@ -123,7 +123,7 @@ class CardPreview extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
-          color: Colors.black.withOpacity(0.25),
+          color: Colors.black.withValues(alpha: 0.25),
           width: 1,
         ),
       ),
@@ -138,7 +138,7 @@ class CardPreview extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.symmetric(
                   vertical: BorderSide(
-                    color: Colors.black.withOpacity(0.25),
+                    color: Colors.black.withValues(alpha: 0.25),
                     width: 1,
                   ),
                 ),
@@ -154,7 +154,7 @@ class CardPreview extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.symmetric(
                   horizontal: BorderSide(
-                    color: Colors.black.withOpacity(0.25),
+                    color: Colors.black.withValues(alpha: 0.25),
                     width: 1,
                   ),
                 ),
@@ -167,7 +167,7 @@ class CardPreview extends StatelessWidget {
               height: 12,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.black.withOpacity(0.25),
+                  color: Colors.black.withValues(alpha: 0.25),
                   width: 1,
                 ),
                 borderRadius: BorderRadius.circular(2),

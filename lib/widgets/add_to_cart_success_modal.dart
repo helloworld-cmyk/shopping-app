@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:auto_route/auto_route.dart';
-import '../../../theme/color.dart';
-import '../../../router/app_router.dart';
+
+import '../router/app_router.dart';
+import '../theme/color.dart';
 
 class AddToCartSuccessModal extends StatelessWidget {
   const AddToCartSuccessModal({super.key});

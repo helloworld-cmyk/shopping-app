@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../bloc/addressBloc/state.dart';
 import '../../../theme/color.dart';
-import '../address_mock_data.dart';
 
 class AddressItem extends StatelessWidget {
   final AddressModel address;
+  final bool isSelected;
   final VoidCallback onDelete;
   final VoidCallback onTap;
 
   const AddressItem({
     super.key,
     required this.address,
+    required this.isSelected,
     required this.onDelete,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final bool isDefault = address.isDefault;
-    final Color cardBackground = isDefault
+    final Color cardBackground = isSelected
         ? const Color(0xFFF9F9F9)
         : Colors.white;
-    final Color cardBorder = isDefault
+    final Color cardBorder = isSelected
         ? Colors.transparent
         : const Color(0xFFEAEAEA);
-    final Color nameColor = isDefault
+    final Color nameColor = isSelected
         ? AppColors.black
         : const Color(0xFF8F8F8F);
     final Color detailColor = const Color(0xFF8F8F8F);
-    final Color arrowColor = isDefault
+    final Color arrowColor = isSelected
         ? AppColors.black
         : const Color(0xFF8F8F8F);
 
@@ -58,7 +59,7 @@ class AddressItem extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                if (isDefault)
+                if (isSelected)
                   Positioned(
                     left: 0,
                     top: 0,
@@ -138,7 +139,7 @@ class AddressItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (isDefault)
+                if (isSelected)
                   Positioned(
                     top: 10,
                     right: 0,
@@ -155,7 +156,7 @@ class AddressItem extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Default',
+                        'Selected',
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.white,

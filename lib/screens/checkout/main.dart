@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../bloc/myorderBloc/bloc.dart';
+import '../../bloc/myorderBloc/event.dart';
 import '../../router/app_router.dart';
 import '../../theme/color.dart';
 import '../../widgets/common_app_bar.dart';
@@ -83,9 +85,9 @@ class CheckoutScreen extends StatelessWidget {
                                   Text(
                                     'Total',
                                     style: GoogleFonts.poppins(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black,
                                     ),
                                   ),
                                   Text(
@@ -110,6 +112,13 @@ class CheckoutScreen extends StatelessWidget {
                         bottom: MediaQuery.of(context).padding.bottom + 16,
                         child: OrderNowButton(
                           onPressed: () {
+                            if (state.items.isEmpty) {
+                              return;
+                            }
+
+                            context.read<MyOrderBloc>().add(
+                              PlaceOrder(List.of(state.items)),
+                            );
                             context.router.push(const SuccessRoute());
                           },
                         ),

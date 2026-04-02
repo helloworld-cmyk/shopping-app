@@ -2,13 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widgets/product_card.dart';
+import '../../widgets/product_grid.dart';
 import 'bloc/bloc.dart';
 import 'widget/category_filter_field.dart';
 import 'widget/category_selector_bottom_sheet.dart';
 import 'widget/men_hero_header.dart';
-import 'widget/product_grid_section.dart';
 
 import 'detail_categories_mock_data.dart';
+
 @RoutePage()
 class DetailCatagoriesScreen extends StatelessWidget {
   const DetailCatagoriesScreen({super.key, required this.categoryTitle});
@@ -30,8 +32,6 @@ class DetailCategoriesView extends StatelessWidget {
   const DetailCategoriesView({super.key, required this.categoryTitle});
 
   final String categoryTitle;
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,21 @@ class DetailCategoriesView extends StatelessWidget {
                               showCategorySelectorBottomSheet(context, state),
                         ),
                         const SizedBox(height: 16),
-                        ProductGridSection(products: state.products),
+                        ProductGridSection(
+                          itemCount: state.products.length,
+                          gridPadding: EdgeInsets.zero,
+                          itemBuilder: (BuildContext context, int index) {
+                            final product = state.products[index];
+                            return ProductCard(
+                              image: product.imagePath,
+                              name: product.name,
+                              soldLabel: product.soldLabel,
+                              priceText:
+                                  '\$ ${product.price.toStringAsFixed(2)}',
+                              isAsset: true,
+                            );
+                          },
+                        ),
                       ],
                     ),
                   );
@@ -73,5 +87,4 @@ class DetailCategoriesView extends StatelessWidget {
       ),
     );
   }
-
 }

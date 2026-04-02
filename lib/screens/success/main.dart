@@ -63,7 +63,7 @@ class SuccessScreen extends StatelessWidget {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to orders
+                    context.router.replaceAll([const MyOrderRoute()]);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

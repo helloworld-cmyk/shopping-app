@@ -107,6 +107,22 @@ class CategoriesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ChangeProfileScreen]
+class ChangeProfileRoute extends PageRouteInfo<void> {
+  const ChangeProfileRoute({List<PageRouteInfo>? children})
+    : super(ChangeProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ChangeProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ChangeProfileScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [CheckoutScreen]
 class CheckoutRoute extends PageRouteInfo<void> {
   const CheckoutRoute({List<PageRouteInfo>? children})
@@ -187,6 +203,22 @@ class HomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const HomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MyOrderScreen]
+class MyOrderRoute extends PageRouteInfo<void> {
+  const MyOrderRoute({List<PageRouteInfo>? children})
+    : super(MyOrderRoute.name, initialChildren: children);
+
+  static const String name = 'MyOrderRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MyOrderScreen();
     },
   );
 }
@@ -387,6 +419,22 @@ class RegisterRouteArgs {
 }
 
 /// generated route for
+/// [SearchFilterScreen]
+class SearchFilterRoute extends PageRouteInfo<void> {
+  const SearchFilterRoute({List<PageRouteInfo>? children})
+    : super(SearchFilterRoute.name, initialChildren: children);
+
+  static const String name = 'SearchFilterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SearchFilterScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SearchScreen]
 class SearchRoute extends PageRouteInfo<void> {
   const SearchRoute({List<PageRouteInfo>? children})
@@ -430,6 +478,22 @@ class SuccessRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SuccessScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [WishlistScreen]
+class WishlistRoute extends PageRouteInfo<void> {
+  const WishlistRoute({List<PageRouteInfo>? children})
+    : super(WishlistRoute.name, initialChildren: children);
+
+  static const String name = 'WishlistRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WishlistScreen();
     },
   );
 }

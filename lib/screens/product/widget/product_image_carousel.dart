@@ -92,7 +92,7 @@ class _ProductImageCarouselState extends State<ProductImageCarousel> {
                 decoration: BoxDecoration(
                   color: index == _currentIndex
                       ? AppColors.primary
-                      : AppColors.white.withOpacity(0.5),
+                      : AppColors.white.withValues(alpha: 0.5),
                   borderRadius: BorderRadius.circular(3),
                 ),
               ),

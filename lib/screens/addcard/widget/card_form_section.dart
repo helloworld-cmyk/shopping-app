@@ -7,18 +7,28 @@ import '../../../theme/color.dart';
 class CardFormSection extends StatelessWidget {
   const CardFormSection({
     super.key,
-    required this.nameController,
-    required this.cardNumberController,
-    required this.expMonthController,
-    required this.expDateController,
-    required this.cvvController,
+    required this.name,
+    required this.cardNumber,
+    required this.expMonth,
+    required this.expDate,
+    required this.cvv,
+    required this.onNameChanged,
+    required this.onCardNumberChanged,
+    required this.onExpMonthChanged,
+    required this.onExpDateChanged,
+    required this.onCvvChanged,
   });
 
-  final TextEditingController nameController;
-  final TextEditingController cardNumberController;
-  final TextEditingController expMonthController;
-  final TextEditingController expDateController;
-  final TextEditingController cvvController;
+  final String name;
+  final String cardNumber;
+  final String expMonth;
+  final String expDate;
+  final String cvv;
+  final ValueChanged<String> onNameChanged;
+  final ValueChanged<String> onCardNumberChanged;
+  final ValueChanged<String> onExpMonthChanged;
+  final ValueChanged<String> onExpDateChanged;
+  final ValueChanged<String> onCvvChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +37,9 @@ class CardFormSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Name On Card ──
           _buildTextField(
-            controller: nameController,
+            value: name,
+            onChanged: onNameChanged,
             label: 'Name On Card',
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.words,
@@ -37,9 +47,9 @@ class CardFormSection extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // ── Card Number ──
           _buildTextField(
-            controller: cardNumberController,
+            value: cardNumber,
+            onChanged: onCardNumberChanged,
             label: 'Card Number',
             keyboardType: TextInputType.number,
             inputFormatters: [
@@ -56,7 +66,8 @@ class CardFormSection extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildTextField(
-                  controller: expMonthController,
+                  value: expMonth,
+                  onChanged: onExpMonthChanged,
                   label: 'Exp Month',
                   keyboardType: TextInputType.number,
                   inputFormatters: [
@@ -68,7 +79,8 @@ class CardFormSection extends StatelessWidget {
               const SizedBox(width: 24),
               Expanded(
                 child: _buildTextField(
-                  controller: expDateController,
+                  value: expDate,
+                  onChanged: onExpDateChanged,
                   label: 'Exp Date',
                   keyboardType: TextInputType.number,
                   inputFormatters: [
@@ -82,9 +94,9 @@ class CardFormSection extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // ── CVV ──
           _buildTextField(
-            controller: cvvController,
+            value: cvv,
+            onChanged: onCvvChanged,
             label: 'CVV',
             keyboardType: TextInputType.number,
             obscureText: true,
@@ -99,19 +111,87 @@ class CardFormSection extends StatelessWidget {
   }
 
   Widget _buildTextField({
-    required TextEditingController controller,
+    required String value,
+    required ValueChanged<String> onChanged,
     required String label,
     TextInputType keyboardType = TextInputType.text,
     bool obscureText = false,
     List<TextInputFormatter>? inputFormatters,
     TextCapitalization textCapitalization = TextCapitalization.none,
   }) {
-    return TextField(
-      controller: controller,
+    return _CardInputField(
+      value: value,
+      onChanged: onChanged,
+      label: label,
       keyboardType: keyboardType,
       obscureText: obscureText,
       inputFormatters: inputFormatters,
       textCapitalization: textCapitalization,
+    );
+  }
+}
+
+class _CardInputField extends StatefulWidget {
+  const _CardInputField({
+    required this.value,
+    required this.onChanged,
+    required this.label,
+    required this.keyboardType,
+    required this.obscureText,
+    this.inputFormatters,
+    required this.textCapitalization,
+  });
+
+  final String value;
+  final ValueChanged<String> onChanged;
+  final String label;
+  final TextInputType keyboardType;
+  final bool obscureText;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextCapitalization textCapitalization;
+
+  @override
+  State<_CardInputField> createState() => _CardInputFieldState();
+}
+
+class _CardInputFieldState extends State<_CardInputField> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.value);
+  }
+
+  @override
+  void didUpdateWidget(covariant _CardInputField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value == _controller.text) {
+      return;
+    }
+
+    _controller.value = _controller.value.copyWith(
+      text: widget.value,
+      selection: TextSelection.collapsed(offset: widget.value.length),
+      composing: TextRange.empty,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      keyboardType: widget.keyboardType,
+      obscureText: widget.obscureText,
+      inputFormatters: widget.inputFormatters,
+      textCapitalization: widget.textCapitalization,
+      onChanged: widget.onChanged,
       style: GoogleFonts.poppins(
         fontSize: 14,
         fontWeight: FontWeight.w400,
@@ -121,7 +201,7 @@ class CardFormSection extends StatelessWidget {
       ),
       cursorColor: AppColors.primary,
       decoration: InputDecoration(
-        labelText: label,
+        labelText: widget.label,
         labelStyle: GoogleFonts.poppins(
           fontSize: 14,
           fontWeight: FontWeight.w400,

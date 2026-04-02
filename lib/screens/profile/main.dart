@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Switch(
                     value: true,
                     onChanged: (val) {},
-                    activeColor: AppColors.primary,
+                    activeThumbColor: AppColors.primary,
                   ),
                 ),
               ],

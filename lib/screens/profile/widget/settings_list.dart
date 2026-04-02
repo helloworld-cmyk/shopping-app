@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/authBloc/bloc.dart';
 import '../../../bloc/authBloc/event.dart';
+import '../../../router/app_router.dart';
 import '../../../theme/color.dart';
 import '../profile_typography.dart';
 
@@ -16,7 +18,9 @@ class SettingsList extends StatelessWidget {
         _SettingItem(
           icon: Icons.person_outline,
           label: 'Account Setting',
-          onTap: () {},
+          onTap: () {
+            context.router.push(const ChangeProfileRoute());
+          },
         ),
         _SettingItem(
           icon: Icons.notifications_none,

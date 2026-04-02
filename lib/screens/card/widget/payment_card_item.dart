@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../bloc/cardBloc/state.dart';
 import '../../../theme/color.dart';
-import '../card_mock_data.dart';
 
 class PaymentCardItem extends StatelessWidget {
   const PaymentCardItem({
@@ -65,7 +65,7 @@ class PaymentCardItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 24),
-                  
+
                   // Chip placeholder using network image (transparent chip outline)
                   Container(
                     width: 44,
@@ -73,7 +73,7 @@ class PaymentCardItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
-                        color: Colors.black.withOpacity(0.3),
+                        color: Colors.black.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     ),
@@ -81,12 +81,15 @@ class PaymentCardItem extends StatelessWidget {
                       children: [
                         // Simulating chip lines
                         Positioned(
-                          left: 10, right: 10, top: 0, bottom: 0,
+                          left: 10,
+                          right: 10,
+                          top: 0,
+                          bottom: 0,
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.symmetric(
                                 vertical: BorderSide(
-                                  color: Colors.black.withOpacity(0.3),
+                                  color: Colors.black.withValues(alpha: 0.3),
                                   width: 1,
                                 ),
                               ),
@@ -94,12 +97,15 @@ class PaymentCardItem extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          top: 10, bottom: 10, left: 0, right: 0,
+                          top: 10,
+                          bottom: 10,
+                          left: 0,
+                          right: 0,
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.symmetric(
                                 horizontal: BorderSide(
-                                  color: Colors.black.withOpacity(0.3),
+                                  color: Colors.black.withValues(alpha: 0.3),
                                   width: 1,
                                 ),
                               ),
@@ -109,10 +115,11 @@ class PaymentCardItem extends StatelessWidget {
                         // Inner box
                         Center(
                           child: Container(
-                            width: 16, height: 12,
+                            width: 16,
+                            height: 12,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.black.withOpacity(0.3),
+                                color: Colors.black.withValues(alpha: 0.3),
                                 width: 1,
                               ),
                               borderRadius: BorderRadius.circular(2),
@@ -124,20 +131,20 @@ class PaymentCardItem extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 16),
-                  
+
                   // Card number with a mono-space vibe using Poppins and letter spacing
                   Text(
                     cardInfo.cardNumber,
                     style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.black.withOpacity(0.75),
+                      color: AppColors.black.withValues(alpha: 0.75),
                       letterSpacing: 3.0,
                     ),
                   ),
-                  
+
                   const SizedBox(height: 12),
-                  
+
                   // Card Holder & Expiry Date
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,7 +154,7 @@ class PaymentCardItem extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.black.withOpacity(0.75),
+                          color: AppColors.black.withValues(alpha: 0.75),
                           letterSpacing: 1.5,
                         ),
                       ),
@@ -156,7 +163,7 @@ class PaymentCardItem extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.black.withOpacity(0.75),
+                          color: AppColors.black.withValues(alpha: 0.75),
                           letterSpacing: 1.5,
                         ),
                       ),

@@ -6,26 +6,38 @@ import '../../../theme/color.dart';
 class BillingFormSection extends StatelessWidget {
   const BillingFormSection({
     super.key,
-    required this.firstNameController,
-    required this.lastNameController,
-    required this.streetController,
-    required this.cityController,
-    required this.phoneController,
-    required this.emailController,
+    required this.firstName,
+    required this.lastName,
+    required this.street,
+    required this.city,
+    required this.phone,
+    required this.email,
     required this.selectedCountry,
     required this.phoneCode,
+    required this.onFirstNameChanged,
+    required this.onLastNameChanged,
+    required this.onStreetChanged,
+    required this.onCityChanged,
+    required this.onPhoneChanged,
+    required this.onEmailChanged,
     required this.onCountryChanged,
     required this.onPhoneCodeChanged,
   });
 
-  final TextEditingController firstNameController;
-  final TextEditingController lastNameController;
-  final TextEditingController streetController;
-  final TextEditingController cityController;
-  final TextEditingController phoneController;
-  final TextEditingController emailController;
+  final String firstName;
+  final String lastName;
+  final String street;
+  final String city;
+  final String phone;
+  final String email;
   final String selectedCountry;
   final String phoneCode;
+  final ValueChanged<String> onFirstNameChanged;
+  final ValueChanged<String> onLastNameChanged;
+  final ValueChanged<String> onStreetChanged;
+  final ValueChanged<String> onCityChanged;
+  final ValueChanged<String> onPhoneChanged;
+  final ValueChanged<String> onEmailChanged;
   final ValueChanged<String> onCountryChanged;
   final ValueChanged<String> onPhoneCodeChanged;
 
@@ -34,28 +46,28 @@ class BillingFormSection extends StatelessWidget {
   // ───────────────────────────────────────────────
 
   TextStyle get _labelStyle => GoogleFonts.poppins(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: AppColors.lightGray,
-        height: 1,
-        letterSpacing: 0,
-      );
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.lightGray,
+    height: 1,
+    letterSpacing: 0,
+  );
 
   TextStyle get _inputStyle => GoogleFonts.poppins(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: AppColors.black,
-        height: 1.4,
-        letterSpacing: 0,
-      );
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+    height: 1.4,
+    letterSpacing: 0,
+  );
 
   TextStyle get _hintStyle => GoogleFonts.poppins(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: AppColors.extraLightGray,
-        height: 1.4,
-        letterSpacing: 0,
-      );
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.extraLightGray,
+    height: 1.4,
+    letterSpacing: 0,
+  );
 
   InputDecoration _underlineDecoration(String hint) {
     return InputDecoration(
@@ -90,8 +102,9 @@ class BillingFormSection extends StatelessWidget {
                 child: _LabeledField(
                   label: 'First name *',
                   labelStyle: _labelStyle,
-                  child: TextField(
-                    controller: firstNameController,
+                  child: _BillingTextField(
+                    value: firstName,
+                    onChanged: onFirstNameChanged,
                     style: _inputStyle,
                     decoration: _underlineDecoration(''),
                   ),
@@ -102,8 +115,9 @@ class BillingFormSection extends StatelessWidget {
                 child: _LabeledField(
                   label: 'Last name *',
                   labelStyle: _labelStyle,
-                  child: TextField(
-                    controller: lastNameController,
+                  child: _BillingTextField(
+                    value: lastName,
+                    onChanged: onLastNameChanged,
                     style: _inputStyle,
                     decoration: _underlineDecoration(''),
                   ),
@@ -131,8 +145,9 @@ class BillingFormSection extends StatelessWidget {
           _LabeledField(
             label: '',
             labelStyle: _labelStyle,
-            child: TextField(
-              controller: streetController,
+            child: _BillingTextField(
+              value: street,
+              onChanged: onStreetChanged,
               style: _inputStyle,
               decoration: _underlineDecoration('Street address *'),
             ),
@@ -144,8 +159,9 @@ class BillingFormSection extends StatelessWidget {
           _LabeledField(
             label: '',
             labelStyle: _labelStyle,
-            child: TextField(
-              controller: cityController,
+            child: _BillingTextField(
+              value: city,
+              onChanged: onCityChanged,
               style: _inputStyle,
               decoration: _underlineDecoration('Town / City *'),
             ),
@@ -156,10 +172,11 @@ class BillingFormSection extends StatelessWidget {
           // ── Phone number with code ──
           _PhoneField(
             phoneCode: phoneCode,
-            controller: phoneController,
+            value: phone,
             inputStyle: _inputStyle,
             hintStyle: _hintStyle,
             onCodeChanged: onPhoneCodeChanged,
+            onChanged: onPhoneChanged,
           ),
 
           const SizedBox(height: 24),
@@ -168,8 +185,9 @@ class BillingFormSection extends StatelessWidget {
           _LabeledField(
             label: '',
             labelStyle: _labelStyle,
-            child: TextField(
-              controller: emailController,
+            child: _BillingTextField(
+              value: email,
+              onChanged: onEmailChanged,
               style: _inputStyle,
               keyboardType: TextInputType.emailAddress,
               decoration: _underlineDecoration('Email address *'),
@@ -269,17 +287,20 @@ class _CountryDropdown extends StatelessWidget {
 class _PhoneField extends StatelessWidget {
   const _PhoneField({
     required this.phoneCode,
-    required this.controller,
+    required this.value,
     required this.inputStyle,
     required this.hintStyle,
     required this.onCodeChanged,
+    required this.onChanged,
   });
 
   final String phoneCode;
-  final TextEditingController controller;
+  final String value;
   final TextStyle inputStyle;
   final TextStyle hintStyle;
   final ValueChanged<String> onCodeChanged;
+  final ValueChanged<String> onChanged;
+  static const _phoneCodes = ['+1', '+44', '+61', '+81', '+84'];
 
   @override
   Widget build(BuildContext context) {
@@ -292,29 +313,42 @@ class _PhoneField extends StatelessWidget {
       child: Row(
         children: [
           // Country code
-          GestureDetector(
-            onTap: () {
-              // Could show a picker; for now cycle through common codes
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8, bottom: 8, top: 6),
-              child: Text(phoneCode, style: inputStyle),
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: phoneCode,
+                style: inputStyle,
+                icon: const Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: AppColors.black,
+                  size: 18,
+                ),
+                items: _phoneCodes.map((code) {
+                  return DropdownMenuItem<String>(
+                    value: code,
+                    child: Text(code, style: inputStyle),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    onCodeChanged(value);
+                  }
+                },
+              ),
             ),
           ),
-          Container(
-            width: 1,
-            height: 20,
-            color: AppColors.subtleLine,
-          ),
+          Container(width: 1, height: 20, color: AppColors.subtleLine),
           const SizedBox(width: 12),
           // Phone input
           Expanded(
-            child: TextField(
-              controller: controller,
+            child: _BillingTextField(
+              value: value,
+              onChanged: onChanged,
               style: inputStyle,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                hintText: 'Phone number',
+                hintText: 'Phone *',
                 hintStyle: hintStyle,
                 contentPadding: const EdgeInsets.only(bottom: 10, top: 6),
                 isDense: true,
@@ -326,6 +360,33 @@ class _PhoneField extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _BillingTextField extends StatelessWidget {
+  const _BillingTextField({
+    required this.value,
+    required this.onChanged,
+    required this.style,
+    required this.decoration,
+    this.keyboardType,
+  });
+
+  final String value;
+  final ValueChanged<String> onChanged;
+  final TextStyle style;
+  final InputDecoration decoration;
+  final TextInputType? keyboardType;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      initialValue: value,
+      onChanged: onChanged,
+      keyboardType: keyboardType,
+      style: style,
+      decoration: decoration,
     );
   }
 }
