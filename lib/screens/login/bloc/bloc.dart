@@ -1,12 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../phakeBE/auth/auth_repository.dart';
 import '../../../phakeBE/main.dart';
 import 'event.dart';
 import 'state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc({PhakeBE? phakeBE})
-    : _phakeBE = phakeBE ?? PhakeBE.instance,
+  // [SOLID - DIP] SignInBloc phụ thuộc vào abstraction (AuthRepository) thay vì concretion (PhakeBE)
+  SignInBloc({AuthRepository? authRepository})
+    : _authRepository = authRepository ?? PhakeBE.instance.auth,
       super(const SignInState()) {
     on<SignInEmailChanged>(_onEmailChanged);
     on<SignInPasswordChanged>(_onPasswordChanged);
@@ -16,7 +18,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInFeedbackCleared>(_onFeedbackCleared);
   }
 
-  final PhakeBE _phakeBE;
+  final AuthRepository _authRepository;
 
   void _onEmailChanged(SignInEmailChanged event, Emitter<SignInState> emit) {
     emit(
@@ -89,7 +91,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     );
 
     try {
-      final response = await _phakeBE.signInWithResult(
+      final response = await _authRepository.signInWithResult(
         email: validatedState.normalizedEmail,
         password: validatedState.password,
       );

@@ -1,9 +1,11 @@
 export 'auth.service.dart' show AuthSignInResult, AuthSignUpResult;
 
 import 'auth.service.dart';
+import 'auth_repository.dart';
 import '../database/realmservice.dart';
 
-class AuthController {
+// [SOLID - DIP] AuthController implement AuthRepository interface 
+class AuthController implements AuthRepository {
   final RealmService realmService;
   late AuthService authService;
 
@@ -11,6 +13,7 @@ class AuthController {
     authService = AuthService(realmService.realm);
   }
 
+  @override
   Future<AuthSignInResult> signInWithResult({
     required String email,
     required String password,
@@ -18,22 +21,8 @@ class AuthController {
     return authService.signInWithResult(email: email, password: password);
   }
 
-  Future<bool> signUp(
-    String email,
-    String password,
-    String firstName,
-    String lastName,
-    String phoneNumber,
-  ) async {
-    return await authService.signUp(
-      email,
-      password,
-      firstName,
-      lastName,
-      phoneNumber,
-    );
-  }
 
+  @override
   Future<AuthSignUpResult> signUpWithResult({
     required String email,
     required String password,

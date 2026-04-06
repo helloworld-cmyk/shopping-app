@@ -1,11 +1,12 @@
 import 'database/realmservice.dart';
 import 'auth/auth.controller.dart';
+import 'auth/auth_repository.dart';
 
 class PhakeBE {
   static final PhakeBE _instance = PhakeBE._internal();
 
   late final RealmService _realmService;
-  late final AuthController auth;
+  late final AuthRepository auth; // [SOLID - DIP] Sử dụng abstract property
 
   factory PhakeBE() {
     return _instance;
@@ -28,15 +29,7 @@ class PhakeBE {
     return auth.signInWithResult(email: email, password: password);
   }
 
-  Future<bool> signUp(
-    String email,
-    String password,
-    String firstName,
-    String lastName,
-    String phoneNumber,
-  ) {
-    return auth.signUp(email, password, firstName, lastName, phoneNumber);
-  }
+
 
   static PhakeBE get instance => _instance;
 

@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/payment_card_model.dart';
+import '../../screens/card/card_mock_data.dart';
 import 'event.dart';
 import 'state.dart';
 

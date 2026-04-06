@@ -244,58 +244,67 @@ const List<ProductItem> accessoriesDetailCategoryProducts = <ProductItem>[
   ),
 ];
 
+// [SOLID - OCP] Sử dụng Config để lúc thêm chỉ cần thêm 1 chỗ
+class _DetailCategoryConfig {
+  const _DetailCategoryConfig({
+    required this.categories,
+    required this.products,
+    required this.heroImage,
+  });
 
+  final List<String> categories;
+  final List<ProductItem> products;
+  final String heroImage;
+}
+
+const Map<String, _DetailCategoryConfig> _detailCategoryConfigs =
+    <String, _DetailCategoryConfig>{
+      'MEN': _DetailCategoryConfig(
+        categories: menDetailCategories,
+        products: menDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/men.png',
+      ),
+      'WOMEN': _DetailCategoryConfig(
+        categories: womenDetailCategories,
+        products: womenDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/women.png',
+      ),
+      'KIDS': _DetailCategoryConfig(
+        categories: kidsDetailCategories,
+        products: kidsDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/kids.png',
+      ),
+      'SHOES': _DetailCategoryConfig(
+        categories: shoesDetailCategories,
+        products: shoesDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/shoes.png',
+      ),
+      'BAGS': _DetailCategoryConfig(
+        categories: bagsDetailCategories,
+        products: bagsDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/bags.png',
+      ),
+      'ACCESSORIES': _DetailCategoryConfig(
+        categories: accessoriesDetailCategories,
+        products: accessoriesDetailCategoryProducts,
+        heroImage: 'lib/assets/catagories/accessories.png',
+      ),
+    };
+
+_DetailCategoryConfig _resolveDetailCategoryConfig(String rawTitle) {
+  final normalizedTitle = rawTitle.trim().toUpperCase();
+  return _detailCategoryConfigs[normalizedTitle] ??
+      _detailCategoryConfigs['MEN']!;
+}
 
 List<String> getDetailCategoriesByTitle(String categoryTitle) {
-  switch (categoryTitle.toUpperCase()) {
-    case 'WOMEN':
-      return womenDetailCategories;
-    case 'KIDS':
-      return kidsDetailCategories;
-    case 'SHOES':
-      return shoesDetailCategories;
-    case 'BAGS':
-      return bagsDetailCategories;
-    case 'ACCESSORIES':
-      return accessoriesDetailCategories;
-    case 'MEN':
-    default:
-      return menDetailCategories;
-  }
+  return _resolveDetailCategoryConfig(categoryTitle).categories;
 }
 
 List<ProductItem> getDetailProductsByTitle(String categoryTitle) {
-  switch (categoryTitle.toUpperCase()) {
-    case 'WOMEN':
-      return womenDetailCategoryProducts;
-    case 'KIDS':
-      return kidsDetailCategoryProducts;
-    case 'SHOES':
-      return shoesDetailCategoryProducts;
-    case 'BAGS':
-      return bagsDetailCategoryProducts;
-    case 'ACCESSORIES':
-      return accessoriesDetailCategoryProducts;
-    case 'MEN':
-    default:
-      return menDetailCategoryProducts;
-  }
+  return _resolveDetailCategoryConfig(categoryTitle).products;
 }
 
 String resolveHeroImage(String value) {
-  switch (value.toUpperCase()) {
-    case 'WOMEN':
-      return 'lib/assets/catagories/women.png';
-    case 'KIDS':
-      return 'lib/assets/catagories/kids.png';
-    case 'BAGS':
-      return 'lib/assets/catagories/bags.png';
-    case 'SHOES':
-      return 'lib/assets/catagories/shoes.png';
-    case 'ACCESSORIES':
-      return 'lib/assets/catagories/accessories.png';
-    case 'MEN':
-    default:
-      return 'lib/assets/catagories/men.png';
-  }
+  return _resolveDetailCategoryConfig(value).heroImage;
 }

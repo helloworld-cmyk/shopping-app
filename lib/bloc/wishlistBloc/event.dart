@@ -1,4 +1,4 @@
-import 'state.dart';
+import '../../models/wishlist_item_model.dart';
 
 sealed class WishlistEvent {
   const WishlistEvent();

@@ -66,31 +66,15 @@ class NotificationItem extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Divider(
-            color: AppColors.subtleLine,
-            height: 1,
-            thickness: 1,
-          ),
+          child: Divider(color: AppColors.subtleLine, height: 1, thickness: 1),
         ),
       ],
     );
   }
 
   Widget _buildIcon() {
-    IconData iconData;
+    final iconData = notification.type.iconData;
     Color iconColor = AppColors.primary;
-
-    switch (notification.type) {
-      case NotificationType.order:
-        iconData = Icons.shopping_bag_outlined;
-        break;
-      case NotificationType.shipping:
-        iconData = Icons.local_shipping_outlined;
-        break;
-      case NotificationType.discount:
-        iconData = Icons.percent_outlined;
-        break;
-    }
 
     if (!notification.isUnread) {
       iconColor = AppColors.iconMuted;
@@ -106,13 +90,7 @@ class NotificationItem extends StatelessWidget {
             color: const Color(0xFFF9F9F9),
             shape: BoxShape.circle,
           ),
-          child: Center(
-            child: Icon(
-              iconData,
-              color: iconColor,
-              size: 24,
-            ),
-          ),
+          child: Center(child: Icon(iconData, color: iconColor, size: 24)),
         ),
         if (notification.isUnread)
           Positioned(

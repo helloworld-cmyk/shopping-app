@@ -4,6 +4,29 @@ import 'package:auto_route/auto_route.dart';
 import '../router/app_router.dart';
 import '../theme/color.dart';
 
+class BottomNavTabConfig {
+  final IconData icon;
+  final String label;
+  final bool hasAvatarRing;
+  final PageRouteInfo<dynamic> route;
+  
+  const BottomNavTabConfig({
+    required this.icon,
+    required this.label,
+    required this.route,
+    this.hasAvatarRing = false,
+  });
+}
+
+// [SOLID - OCP] Sử dụng List thay vì switch-case để mở rộng Tab dễ dàng mà không cẩn sửa source code UI & route logic.
+final List<BottomNavTabConfig> bottomNavTabs = [
+  const BottomNavTabConfig(icon: Icons.home_filled, label: 'Home', route: HomeRoute()),
+  const BottomNavTabConfig(icon: Icons.favorite, label: 'Wishlist', route: WishlistRoute()),
+  const BottomNavTabConfig(icon: Icons.shopping_bag, label: 'Cart', route: CartRoute()),
+  const BottomNavTabConfig(icon: Icons.search, label: 'Search', route: SearchRoute()),
+  const BottomNavTabConfig(icon: Icons.account_circle, label: 'Account', hasAvatarRing: true, route: ProfileRoute()),
+];
+
 class CustomBottomNav extends StatelessWidget {
   const CustomBottomNav({super.key, this.selectedIndex = 0});
 
@@ -20,77 +43,25 @@ class CustomBottomNav extends StatelessWidget {
       ),
       padding: EdgeInsets.fromLTRB(6, 8, 6, 8 + bottomInset),
       child: Row(
-        children: [
-          Expanded(
+        children: List.generate(bottomNavTabs.length, (index) {
+          final tab = bottomNavTabs[index];
+          return Expanded(
             child: _BottomNavItem(
-              icon: Icons.home_filled,
-              label: 'Home',
-              isSelected: selectedIndex == 0,
-              onTap: () => _onTabTap(context, 0),
+              icon: tab.icon,
+              label: tab.label,
+              isSelected: selectedIndex == index,
+              hasAvatarRing: tab.hasAvatarRing,
+              onTap: () => _onTabTap(context, index),
             ),
-          ),
-          Expanded(
-            child: _BottomNavItem(
-              icon: Icons.favorite,
-              label: 'Wishlist',
-              isSelected: selectedIndex == 1,
-              onTap: () => _onTabTap(context, 1),
-            ),
-          ),
-          Expanded(
-            child: _BottomNavItem(
-              icon: Icons.shopping_bag,
-              label: 'Cart',
-              isSelected: selectedIndex == 2,
-              onTap: () => _onTabTap(context, 2),
-            ),
-          ),
-          Expanded(
-            child: _BottomNavItem(
-              icon: Icons.search,
-              label: 'Search',
-              isSelected: selectedIndex == 3,
-              onTap: () => _onTabTap(context, 3),
-            ),
-          ),
-          Expanded(
-            child: _BottomNavItem(
-              icon: Icons.account_circle,
-              label: 'Account',
-              isSelected: selectedIndex == 4,
-              hasAvatarRing: true,
-              onTap: () => _onTabTap(context, 4),
-            ),
-          ),
-        ],
+          );
+        }),
       ),
     );
   }
 
   void _onTabTap(BuildContext context, int index) {
     if (selectedIndex == index) return;
-
-    final PageRouteInfo<dynamic> route;
-    switch (index) {
-      case 0:
-        route = const HomeRoute();
-        break;
-      case 1:
-        route = const WishlistRoute();
-        break;
-      case 2:
-        route = const CartRoute();
-        break;
-      case 3:
-        route = const SearchRoute();
-        break;
-      case 4:
-        route = const ProfileRoute();
-        break;
-      default:
-        return;
-    }
-    context.router.navigate(route);
+    context.router.navigate(bottomNavTabs[index].route);
   }
 }
 

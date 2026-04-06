@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/cardBloc/state.dart';
+
+import '../../../models/payment_card_model.dart';
 import '../../../theme/color.dart';
 
 class PaymentCardItem extends StatelessWidget {

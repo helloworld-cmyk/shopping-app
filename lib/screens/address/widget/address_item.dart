@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/addressBloc/state.dart';
+
+import '../../../models/address_model.dart';
 import '../../../theme/color.dart';
 
 class AddressItem extends StatelessWidget {

@@ -1,29 +1,13 @@
-class AddressModel {
-  final String id;
-  final String name;
-  final String address;
-  final String email;
-  final String phone;
-  final bool isDefault;
+import '../../models/address_model.dart';
 
-  AddressModel({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.email,
-    required this.phone,
-    this.isDefault = false,
-  });
-}
-
-final List<AddressModel> mockAddresses = [
+// [SOLID - SRP] Tách Mock Data ra file riêng
+const List<AddressModel> initialAddressesMockData = [
   AddressModel(
     id: '1',
     name: 'Theresa Webb',
     address: '3517 W. Gray St. Utica, Pennsylvania 57867',
     email: 'Willie.Jennings@Example.Com',
     phone: '(480) 555-0103',
-    isDefault: true,
   ),
   AddressModel(
     id: '2',

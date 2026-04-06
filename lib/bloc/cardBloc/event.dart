@@ -1,4 +1,5 @@
-import 'state.dart';
+import '../../models/payment_card_model.dart';
+
 
 sealed class CardEvent {
   const CardEvent();

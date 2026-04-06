@@ -7,6 +7,7 @@ import '../../bloc/cartBloc/cart_item.dart';
 import '../../bloc/wishlistBloc/bloc.dart';
 import '../../bloc/wishlistBloc/event.dart';
 import '../../bloc/wishlistBloc/state.dart';
+import '../../models/wishlist_item_model.dart';
 import '../../router/app_router.dart';
 import '../../theme/color.dart';
 import '../../widgets/common_app_bar.dart';

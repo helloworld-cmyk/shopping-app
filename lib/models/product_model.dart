@@ -13,6 +13,5 @@ class ProductItem {
   final double price;
   final String imagePath;
   final String type;
-  /// Optional formatted string price (e.g., "$ 219.00 - 180.00")
   final String? stringPrice;
 }

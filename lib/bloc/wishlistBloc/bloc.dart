@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/wishlist_item_model.dart';
+
 import 'event.dart';
 import 'state.dart';
 

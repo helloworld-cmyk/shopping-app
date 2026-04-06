@@ -1,35 +1,7 @@
-class AddressModel {
-  const AddressModel({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.email,
-    required this.phone,
-  });
+import '../../models/address_model.dart';
+import '../../screens/address/address_mock_data.dart';
 
-  final String id;
-  final String name;
-  final String address;
-  final String email;
-  final String phone;
-
-  AddressModel copyWith({
-    String? id,
-    String? name,
-    String? address,
-    String? email,
-    String? phone,
-  }) {
-    return AddressModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      address: address ?? this.address,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
-    );
-  }
-}
-
+// [SOLID - SRP] Tách AddressModel ra file model riêng biệt để state file gọn nhẹ.
 enum AddressFormStatus { idle, validationError, success }
 
 const String _defaultCountry = 'UNITED STATES';
@@ -37,7 +9,7 @@ const String _defaultPhoneCode = '+1';
 
 class AddressState {
   const AddressState({
-    this.addresses = _initialAddresses,
+    this.addresses = initialAddressesMockData,
     this.selectedAddressId = '1',
     this.firstName = '',
     this.lastName = '',
@@ -114,27 +86,3 @@ class AddressState {
     );
   }
 }
-
-const List<AddressModel> _initialAddresses = [
-  AddressModel(
-    id: '1',
-    name: 'Theresa Webb',
-    address: '3517 W. Gray St. Utica, Pennsylvania 57867',
-    email: 'Willie.Jennings@Example.Com',
-    phone: '(480) 555-0103',
-  ),
-  AddressModel(
-    id: '2',
-    name: 'Brooklyn Warren',
-    address: '4517 Washington Ave. Manchester, Kentucky 39495',
-    email: 'Jessica.Hanson@Example.Com',
-    phone: '(629) 555-0129',
-  ),
-  AddressModel(
-    id: '3',
-    name: 'George Harrington',
-    address: 'Turnridge Cir. Shiloh, Hawaii 81063',
-    email: 'Reid@Example.Com',
-    phone: '(480) 555-0121',
-  ),
-];

@@ -1,5 +1,16 @@
+import 'package:flutter/material.dart';
 
-enum NotificationType { order, shipping, discount }
+// [SOLID - OCP] Sửa để lúc thêm chỉ cần thêm ở 1 chỗ thôi
+
+enum NotificationType {
+  order(Icons.shopping_bag_outlined),
+  shipping(Icons.local_shipping_outlined),
+  discount(Icons.percent_outlined);
+
+  const NotificationType(this.iconData);
+
+  final IconData iconData;
+}
 
 class NotificationModel {
   final String id;
@@ -36,49 +47,56 @@ class NotificationModel {
 final List<NotificationModel> mockNotifications = [
   NotificationModel(
     id: '1',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     timestamp: '2 Day Ago',
     type: NotificationType.order,
     isUnread: true,
   ),
   NotificationModel(
     id: '2',
-    content: 'Porttitor rhoncus dolor purus non enim. Scelerisque eleifend donec pretium',
+    content:
+        'Porttitor rhoncus dolor purus non enim. Scelerisque eleifend donec pretium',
     timestamp: '3 Day Ago',
     type: NotificationType.shipping,
     isUnread: true,
   ),
   NotificationModel(
     id: '3',
-    content: 'Vivamus at augue eget arcu dictum varius duis. Sapien faucibus et molestie',
+    content:
+        'Vivamus at augue eget arcu dictum varius duis. Sapien faucibus et molestie',
     timestamp: '4 Day Ago',
     type: NotificationType.discount,
     isUnread: true,
   ),
   NotificationModel(
     id: '4',
-    content: 'Blandit aliquam etiam erat velit. Id porta nibh venenatis cras sed.',
+    content:
+        'Blandit aliquam etiam erat velit. Id porta nibh venenatis cras sed.',
     timestamp: '5 Day Ago',
     type: NotificationType.shipping,
     isUnread: true,
   ),
   NotificationModel(
     id: '5',
-    content: 'In dictum non consectetur a erat nam at lectus. Vel eros donec ac',
+    content:
+        'In dictum non consectetur a erat nam at lectus. Vel eros donec ac',
     timestamp: '5 Day Ago',
     type: NotificationType.shipping,
     isUnread: true,
   ),
   NotificationModel(
     id: '6',
-    content: 'Amet risus nullam eget felis eget nunc lobortis mattis aliquam. Purus sit amet',
+    content:
+        'Amet risus nullam eget felis eget nunc lobortis mattis aliquam. Purus sit amet',
     timestamp: '9 Day Ago',
     type: NotificationType.discount,
     isUnread: true,
   ),
   NotificationModel(
     id: '7',
-    content: 'Justo nec ultrices dui sapien eget. Volutpat lacus laoreet non curabitur gravida',
+    content:
+        'Justo nec ultrices dui sapien eget. Volutpat lacus laoreet non curabitur gravida',
     timestamp: '12 Day Ago',
     type: NotificationType.order,
     isUnread: false,

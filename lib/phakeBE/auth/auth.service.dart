@@ -84,23 +84,6 @@ class AuthService {
     return AuthSignInResult.success('Welcome back, ${user.firstName}');
   }
 
-  Future<bool> signUp(
-    String email,
-    String password,
-    String firstName,
-    String lastName,
-    String phoneNumber,
-  ) async {
-    final result = await signUpWithResult(
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phoneNumber,
-    );
-    return result.isSuccess;
-  }
-
   Future<AuthSignUpResult> signUpWithResult({
     required String email,
     required String password,
